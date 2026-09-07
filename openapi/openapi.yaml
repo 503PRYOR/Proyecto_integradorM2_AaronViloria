@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: Proyecto Integrador M2 API
+  version: 1.0.0
+  description: API REST para administrar authors y posts.
+servers:
+  - url: http://localhost:3000
+paths:
+  /health:
+    get:
+      summary: Verificar disponibilidad de la API
+      responses:
+        '200':
+          description: API disponible
+  /openapi.yaml:
+    get:
+      summary: Obtener la especificación OpenAPI
+      responses:
+        '200':
+          description: Archivo OpenAPI
+          content:
+            application/yaml:
+              schema:
+                type: string
+  /api/authors:
+    get:
+      summary: Listar authors
+      responses:
+        '200':
+          description: Lista de authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    post:
+      summary: Crear author
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorInput'
+      responses:
+        '201':
+          description: Author creado
+        '400':
+          description: Datos inválidos
+        '409':
+          description: Email duplicado
+  /api/authors/{id}:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      summary: Obtener un author
+      responses:
+        '200':
+          description: Author encontrado
+        '404':
+          description: Author inexistente
+    put:
+      summary: Actualizar un author
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorInput'
+      responses:
+        '200':
+          description: Author actualizado
+        '400':
+          description: Datos inválidos
+        '404':
+          description: Author inexistente
+    delete:
+      summary: Eliminar un author y sus posts
+      responses:
+        '204':
+          description: Author eliminado
+        '404':
+          description: Author inexistente
+  /api/posts:
+    get:
+      summary: Listar posts
+      responses:
+        '200':
+          description: Lista de posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+    post:
+      summary: Crear post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        '201':
+          description: Post creado
+        '400':
+          description: Datos inválidos o author inexistente
+  /api/posts/author/{authorId}:
+    parameters:
+      - name: authorId
+        in: path
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+    get:
+      summary: Listar posts de un author
+      responses:
+        '200':
+          description: Posts del author
+        '400':
+          description: authorId inválido
+  /api/posts/{id}:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      summary: Obtener un post
+      responses:
+        '200':
+          description: Post encontrado
+        '404':
+          description: Post inexistente
+    put:
+      summary: Actualizar un post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        '200':
+          description: Post actualizado
+        '400':
+          description: Datos inválidos o author inexistente
+        '404':
+          description: Post inexistente
+    delete:
+      summary: Eliminar un post
+      responses:
+        '204':
+          description: Post eliminado
+        '404':
+          description: Post inexistente
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+  schemas:
+    AuthorInput:
+      type: object
+      required: [name, email]
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 150
+        bio:
+          type: string
+    Author:
+      allOf:
+        - $ref: '#/components/schemas/AuthorInput'
+        - type: object
+          required: [id, created_at]
+          properties:
+            id:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+    PostInput:
+      type: object
+      required: [title, content, author_id]
+      properties:
+        title:
+          type: string
+          maxLength: 200
+        content:
+          type: string
+        author_id:
+          type: integer
+          minimum: 1
+        published:
+          type: boolean
+          default: false
+    Post:
+      allOf:
+        - $ref: '#/components/schemas/PostInput'
+        - type: object
+          required: [id, created_at]
+          properties:
+            id:
+              type: integer
+            author_name:
+              type: string
+            created_at:
+              type: string
+              format: date-time

@@ -1,0 +1,33 @@
+{
+  "name": "proyecto-integrador-m2-api",
+  "version": "1.0.0",
+  "description": "API REST de authors y posts para el Proyecto Integrador M2",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "node",
+    "express",
+    "postgresql",
+    "rest-api"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.17.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
