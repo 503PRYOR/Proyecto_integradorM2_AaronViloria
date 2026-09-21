@@ -2,6 +2,8 @@
 
 API backend desarrollada con Node.js, Express y PostgreSQL. Administra autores y publicaciones mediante endpoints REST y usa un repositorio en memoria para las pruebas automatizadas.
 
+**API en producción:** [Abrir en Railway](https://api-production-83b2.up.railway.app)
+
 ## Tecnologías
 
 - Node.js
