@@ -13,6 +13,10 @@ function createApp(repository) {
   app.use(cors());
   app.use(express.json());
 
+  app.get('/', (req, res) => {
+    res.json({ message: 'Proyecto Integrador M2 API' });
+  });
+
   app.get('/health', (req, res) => res.json({ status: 'ok' }));
   app.get('/openapi.yaml', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../openapi/openapi.yaml'), (error) => {

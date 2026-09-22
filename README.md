@@ -1,32 +1,49 @@
-# Proyecto Integrador M2 - API REST de Autores y Publicaciones
+# Proyecto Integrador M2 - API REST
 
-API backend desarrollada con Node.js, Express y PostgreSQL. Administra autores y publicaciones mediante endpoints REST y usa un repositorio en memoria para las pruebas automatizadas.
+API desarrollada con Node.js y Express para gestionar autores y publicaciones. El proyecto incluye validación de datos, manejo de errores, documentación OpenAPI y pruebas automatizadas con Vitest y Supertest.
 
-**API en producción:** [Abrir en Railway](https://api-production-83b2.up.railway.app)
-
-## Tecnologías
+## Tecnologías utilizadas
 
 - Node.js
 - Express
 - PostgreSQL
-- `pg` con connection pooling
-- Vitest y Supertest
-- Swagger UI y OpenAPI
-- Railway
+- pg
+- Swagger UI
+- OpenAPI 3.0
+- Vitest + Supertest
+
+## Descripción del proyecto
+
+La aplicación expone endpoints para administrar:
+
+- autores
+- posts
+- relaciones entre autores y publicaciones
+
+Además, cuenta con un sistema de validación para asegurar que los datos requeridos sean correctos antes de guardar o actualizar información.
 
 ## Requisitos
 
 - Node.js 18 o superior
 - npm
-- PostgreSQL para ejecutar la aplicación con persistencia real
+- PostgreSQL
 
 ## Instalación
+
+1. Clona el repositorio.
+2. Instala las dependencias:
 
 ```bash
 npm install
 ```
 
-Copia `.env.example` como `.env` y configura la conexión a PostgreSQL:
+3. Crea un archivo `.env` a partir del ejemplo:
+
+```bash
+cp .env.example .env
+```
+
+4. Configura la conexión a PostgreSQL en `.env`:
 
 ```env
 PORT=3000
@@ -34,13 +51,15 @@ DATABASE_URL=postgresql://postgres:postgres@localhost:5432/proyecto_integrador_m
 NODE_ENV=development
 ```
 
-Ejecuta el script de creación y seed en la base de datos configurada:
+5. Ejecuta el script SQL para crear la estructura de la base de datos:
 
 ```bash
 psql "$DATABASE_URL" -f sql/setup.sql
 ```
 
 ## Ejecución
+
+Para iniciar la API:
 
 ```bash
 npm start
@@ -52,28 +71,37 @@ Para desarrollo con reinicio automático:
 npm run dev
 ```
 
-La API estará disponible en `http://localhost:3000`.
+La aplicación quedará disponible en:
 
-## Tests
+```text
+http://localhost:3000
+```
 
-Los tests usan Vitest como runner y Supertest para enviar solicitudes HTTP a la aplicación Express sin levantar un servidor real.
+## Verificación de salud
 
-```bash
-npm test
-npm run test:watch
-npm run test:ui
-npm run lint
+La API incluye un endpoint de comprobación:
+
+```http
+GET /health
+```
+
+Respuesta esperada:
+
+```json
+{
+  "status": "ok"
+}
 ```
 
 ## Endpoints principales
 
-### Authors
+### Autores
 
 | Método | Ruta | Descripción |
 | --- | --- | --- |
 | GET | `/api/authors` | Lista todos los autores |
-| GET | `/api/authors/:id` | Obtiene un autor |
-| POST | `/api/authors` | Crea un autor |
+| GET | `/api/authors/:id` | Obtiene un autor por ID |
+| POST | `/api/authors` | Crea un nuevo autor |
 | PUT | `/api/authors/:id` | Actualiza un autor |
 | DELETE | `/api/authors/:id` | Elimina un autor y sus posts |
 
@@ -82,35 +110,58 @@ npm run lint
 | Método | Ruta | Descripción |
 | --- | --- | --- |
 | GET | `/api/posts` | Lista todos los posts |
-| GET | `/api/posts/:id` | Obtiene un post |
+| GET | `/api/posts/:id` | Obtiene un post por ID |
 | GET | `/api/posts/author/:authorId` | Lista los posts de un autor |
 | POST | `/api/posts` | Crea un post |
 | PUT | `/api/posts/:id` | Actualiza un post |
 | DELETE | `/api/posts/:id` | Elimina un post |
 
-### Documentación y salud
+### Documentación
 
-- `GET /health` comprueba que la API esté disponible.
-- `GET /openapi.yaml` devuelve la especificación OpenAPI.
-- `GET /api-docs/` abre Swagger UI.
+| Método | Ruta | Descripción |
+| --- | --- | --- |
+| GET | `/openapi.yaml` | Devuelve la especificación OpenAPI |
+| GET | `/api-docs/` | Interfaz Swagger UI |
 
-## Validaciones y errores
+## Validaciones
 
-- Los autores requieren `name` y un email válido.
-- Los posts requieren `title`, `content` y un `author_id` entero positivo.
-- `published`, cuando se envía, debe ser booleano.
-- Los errores de validación responden con `400`.
-- Los recursos inexistentes responden con `404`.
-- Los emails duplicados responden con `409` en PostgreSQL.
-- Los errores de clave foránea responden con `400`.
-- Los errores no controlados responden con `500` mediante el middleware global.
+La API valida los siguientes datos:
 
-## Estructura
+- autores: nombre y email válido
+- posts: título, contenido y author_id válido
+- campo `published`: booleano cuando se envía
+- id numérico positivo en rutas parametrizadas
+
+### Códigos de respuesta
+
+- `200` OK
+- `201` Created
+- `204` No Content
+- `400` Datos inválidos
+- `404` Recurso no encontrado
+- `409` Email duplicado
+- `500` Error interno del servidor
+
+## Tests
+
+Se utilizan pruebas automatizadas para validar la API sin levantar un servidor real externo.
+
+Comandos disponibles:
+
+```bash
+npm test
+npm run test:watch
+npm run test:ui
+```
+
+## Estructura del proyecto
 
 ```text
 Proyecto_integradorM2/
-├── openapi/openapi.yaml
-├── sql/setup.sql
+├── openapi/
+│   └── openapi.yaml
+├── sql/
+│   └── setup.sql
 ├── src/
 │   ├── app.js
 │   ├── db.js
@@ -122,25 +173,34 @@ Proyecto_integradorM2/
 │   └── routes/
 │       ├── authors.js
 │       └── posts.js
-├── tests/api.test.js
+├── tests/
+│   └── api.test.js
 ├── .env.example
 ├── package.json
 ├── railway.toml
-└── vitest.config.js
+├── vitest.config.js
+└── README.md
 ```
 
-## OpenAPI y Swagger
+## Documentación OpenAPI
 
-La especificación está en `openapi/openapi.yaml`.
+La especificación OpenAPI se encuentra en:
 
-- Local: `http://localhost:3000/api-docs/`
-- Archivo: `http://localhost:3000/openapi.yaml`
+```text
+openapi/openapi.yaml
+```
 
-## Deployment en Railway
+Puedes consultarla de forma local en:
 
-El archivo `railway.toml` configura Railway para iniciar la aplicación con `npm start` y comprobar `/health`.
+```text
+http://localhost:3000/openapi.yaml
+http://localhost:3000/api-docs/
+```
 
-En Railway se debe configurar `DATABASE_URL` con la conexión de PostgreSQL y `PORT` si el proveedor la requiere.
+## Deployment
 
-- Base URL: `https://api-production-83b2.up.railway.app`
-- Health check: `https://api-production-83b2.up.railway.app/health`
+El proyecto está preparado para desplegarse con Railway. El archivo `railway.toml` define el inicio de la aplicación y la comprobación del health check.
+
+## Notas finales
+
+Este backend sirve como API REST funcional con persistencia en PostgreSQL y simulación en memoria para pruebas, lo que permite validar comportamiento real del proyecto tanto en desarrollo como en testing.
