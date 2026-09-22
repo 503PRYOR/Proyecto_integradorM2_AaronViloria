@@ -190,16 +190,35 @@ La especificación OpenAPI se encuentra en:
 openapi/openapi.yaml
 ```
 
-Puedes consultarla de forma local en:
+### URLs disponibles
+
+#### Local
 
 ```text
+http://localhost:3000/health
 http://localhost:3000/openapi.yaml
 http://localhost:3000/api-docs/
+```
+
+#### Producción (Railway)
+
+```text
+https://api-production-83b2.up.railway.app/
+https://api-production-83b2.up.railway.app/health
+https://api-production-83b2.up.railway.app/openapi.yaml
+https://api-production-83b2.up.railway.app/api-docs/
 ```
 
 ## Deployment
 
 El proyecto está preparado para desplegarse con Railway. El archivo `railway.toml` define el inicio de la aplicación y la comprobación del health check.
+
+### Enlace de producción
+
+- Base URL: https://api-production-83b2.up.railway.app/
+- Health check: https://api-production-83b2.up.railway.app/health
+- OpenAPI: https://api-production-83b2.up.railway.app/openapi.yaml
+- Swagger UI: https://api-production-83b2.up.railway.app/api-docs/
 
 ## Notas finales
 
