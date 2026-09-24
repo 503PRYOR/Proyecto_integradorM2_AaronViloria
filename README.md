@@ -1,3 +1,5 @@
+-- Active: 1789002428918@@gondola.proxy.rlwy.net@42313@railway
+-- Active: 1789002428918@@gondola.proxy.rlwy.net@42313@postgres
 # Proyecto Integrador M2 - API REST
 
 API desarrollada con Node.js y Express para gestionar autores y publicaciones. El proyecto incluye validación de datos, manejo de errores, documentación OpenAPI y pruebas automatizadas con Vitest y Supertest.
@@ -97,13 +99,13 @@ Respuesta esperada:
 
 ### Autores
 
-| Método | Ruta | Link | Descripción |
-| --- | --- | --- | --- |
-| GET | `/api/authors` | [http://localhost:3000/api/authors](http://localhost:3000/api/authors) | Lista todos los autores |
-| GET | `/api/authors/:id` | [http://localhost:3000/api/authors/:id](http://localhost:3000/api/authors/:id) | Obtiene un autor por ID |
-| POST | `/api/authors` | [http://localhost:3000/api/authors](http://localhost:3000/api/authors) | Crea un nuevo autor |
-| PUT | `/api/authors/:id` | [http://localhost:3000/api/authors/:id](http://localhost:3000/api/authors/:id) | Actualiza un autor |
-| DELETE | `/api/authors/:id` | [http://localhost:3000/api/authors/:id](http://localhost:3000/api/authors/:id) | Elimina un autor y sus posts |
+| Método | Ruta | Descripción |
+| --- | --- | --- |
+| GET | `/api/authors` | Lista todos los autores |
+| GET | `/api/authors/:id` | Obtiene un autor por ID |
+| POST | `/api/authors` | Crea un nuevo autor |
+| PUT | `/api/authors/:id` | Actualiza un autor |
+| DELETE | `/api/authors/:id` | Elimina un autor y sus posts |
 
 #### Crear autor (`POST /api/authors`)
 
@@ -150,14 +152,14 @@ Ejemplo de error de validación (`400 Bad Request`):
 
 ### Posts
 
-| Método | Ruta | Link | Descripción |
-| --- | --- | --- | --- |
-| GET | `/api/posts` | [http://localhost:3000/api/posts](http://localhost:3000/api/posts) | Lista todos los posts |
-| GET | `/api/posts/:id` | [http://localhost:3000/api/posts/:id](http://localhost:3000/api/posts/:id) | Obtiene un post por ID |
-| GET | `/api/posts/author/:authorId` | [http://localhost:3000/api/posts/author/:authorId](http://localhost:3000/api/posts/author/:authorId) | Lista los posts de un autor |
-| POST | `/api/posts` | [http://localhost:3000/api/posts](http://localhost:3000/api/posts) | Crea un post |
-| PUT | `/api/posts/:id` | [http://localhost:3000/api/posts/:id](http://localhost:3000/api/posts/:id) | Actualiza un post |
-| DELETE | `/api/posts/:id` | [http://localhost:3000/api/posts/:id](http://localhost:3000/api/posts/:id) | Elimina un post |
+| Método | Ruta | Descripción |
+| --- | --- | --- |
+| GET | `/api/posts` | Lista todos los posts |
+| GET | `/api/posts/:id` | Obtiene un post por ID |
+| GET | `/api/posts/author/:authorId` | Lista los posts de un autor |
+| POST | `/api/posts` | Crea un post |
+| PUT | `/api/posts/:id` | Actualiza un post |
+| DELETE | `/api/posts/:id` | Elimina un post |
 
 ### Documentación
 
