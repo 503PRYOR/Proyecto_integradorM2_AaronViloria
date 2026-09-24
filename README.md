@@ -1,5 +1,3 @@
--- Active: 1789002428918@@gondola.proxy.rlwy.net@42313@railway
--- Active: 1789002428918@@gondola.proxy.rlwy.net@42313@postgres
 # Proyecto Integrador M2 - API REST
 
 API desarrollada con Node.js y Express para gestionar autores y publicaciones. El proyecto incluye validación de datos, manejo de errores, documentación OpenAPI y pruebas automatizadas con Vitest y Supertest.
@@ -248,6 +246,8 @@ http://localhost:3000/api-docs/
 #### Producción (Railway)
 
 ```text
+https://api-production-83b2.up.railway.app/api/authors
+https://api-production-83b2.up.railway.app/api/posts
 https://api-production-83b2.up.railway.app/
 https://api-production-83b2.up.railway.app/health
 https://api-production-83b2.up.railway.app/openapi.yaml
