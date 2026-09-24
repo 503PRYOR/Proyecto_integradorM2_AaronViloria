@@ -99,11 +99,11 @@ Respuesta esperada:
 
 | Método | Ruta | Link | Descripción |
 | --- | --- | --- | --- |
-| GET | `/api/authors` | `http://localhost:3000/api/authors` | Lista todos los autores |
-| GET | `/api/authors/:id` | `http://localhost:3000/api/authors/:id` | Obtiene un autor por ID |
-| POST | `/api/authors` | `http://localhost:3000/api/authors` | Crea un nuevo autor |
-| PUT | `/api/authors/:id` | `http://localhost:3000/api/authors/:id` | Actualiza un autor |
-| DELETE | `/api/authors/:id` | `http://localhost:3000/api/authors/:id` | Elimina un autor y sus posts |
+| GET | `/api/authors` | [http://localhost:3000/api/authors](http://localhost:3000/api/authors) | Lista todos los autores |
+| GET | `/api/authors/:id` | [http://localhost:3000/api/authors/:id](http://localhost:3000/api/authors/:id) | Obtiene un autor por ID |
+| POST | `/api/authors` | [http://localhost:3000/api/authors](http://localhost:3000/api/authors) | Crea un nuevo autor |
+| PUT | `/api/authors/:id` | [http://localhost:3000/api/authors/:id](http://localhost:3000/api/authors/:id) | Actualiza un autor |
+| DELETE | `/api/authors/:id` | [http://localhost:3000/api/authors/:id](http://localhost:3000/api/authors/:id) | Elimina un autor y sus posts |
 
 #### Crear autor (`POST /api/authors`)
 
@@ -152,12 +152,12 @@ Ejemplo de error de validación (`400 Bad Request`):
 
 | Método | Ruta | Link | Descripción |
 | --- | --- | --- | --- |
-| GET | `/api/posts` | `http://localhost:3000/api/posts` | Lista todos los posts |
-| GET | `/api/posts/:id` | `http://localhost:3000/api/posts/:id` | Obtiene un post por ID |
-| GET | `/api/posts/author/:authorId` | `http://localhost:3000/api/posts/author/:authorId` | Lista los posts de un autor |
-| POST | `/api/posts` | `http://localhost:3000/api/posts` | Crea un post |
-| PUT | `/api/posts/:id` | `http://localhost:3000/api/posts/:id` | Actualiza un post |
-| DELETE | `/api/posts/:id` | `http://localhost:3000/api/posts/:id` | Elimina un post |
+| GET | `/api/posts` | [http://localhost:3000/api/posts](http://localhost:3000/api/posts) | Lista todos los posts |
+| GET | `/api/posts/:id` | [http://localhost:3000/api/posts/:id](http://localhost:3000/api/posts/:id) | Obtiene un post por ID |
+| GET | `/api/posts/author/:authorId` | [http://localhost:3000/api/posts/author/:authorId](http://localhost:3000/api/posts/author/:authorId) | Lista los posts de un autor |
+| POST | `/api/posts` | [http://localhost:3000/api/posts](http://localhost:3000/api/posts) | Crea un post |
+| PUT | `/api/posts/:id` | [http://localhost:3000/api/posts/:id](http://localhost:3000/api/posts/:id) | Actualiza un post |
+| DELETE | `/api/posts/:id` | [http://localhost:3000/api/posts/:id](http://localhost:3000/api/posts/:id) | Elimina un post |
 
 ### Documentación
 
