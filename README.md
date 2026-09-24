@@ -246,8 +246,6 @@ http://localhost:3000/api-docs/
 #### Producción (Railway)
 
 ```text
-https://api-production-83b2.up.railway.app/api/authors
-https://api-production-83b2.up.railway.app/api/posts
 https://api-production-83b2.up.railway.app/
 https://api-production-83b2.up.railway.app/health
 https://api-production-83b2.up.railway.app/openapi.yaml
@@ -262,6 +260,8 @@ El proyecto está preparado para desplegarse con Railway. El archivo `railway.to
 
 - Base URL: https://api-production-83b2.up.railway.app/
 - Health check: https://api-production-83b2.up.railway.app/health
+- Authors: https://api-production-83b2.up.railway.app/api/authors
+- Post: https://api-production-83b2.up.railway.app/api/posts
 - OpenAPI: https://api-production-83b2.up.railway.app/openapi.yaml
 - Swagger UI: https://api-production-83b2.up.railway.app/api-docs/
 
