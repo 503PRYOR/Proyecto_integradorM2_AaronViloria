@@ -263,6 +263,8 @@ El proyecto está preparado para desplegarse con Railway. El archivo `railway.to
 - OpenAPI: https://api-production-83b2.up.railway.app/openapi.yaml
 - Swagger UI: https://api-production-83b2.up.railway.app/api-docs/
 
+
+
 ### Link directo para abrir desde GitHub
 
 https://api-production-83b2.up.railway.app/
