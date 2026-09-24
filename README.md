@@ -97,24 +97,67 @@ Respuesta esperada:
 
 ### Autores
 
-| Método | Ruta | Descripción |
-| --- | --- | --- |
-| GET | `/api/authors` | Lista todos los autores |
-| GET | `/api/authors/:id` | Obtiene un autor por ID |
-| POST | `/api/authors` | Crea un nuevo autor |
-| PUT | `/api/authors/:id` | Actualiza un autor |
-| DELETE | `/api/authors/:id` | Elimina un autor y sus posts |
+| Método | Ruta | Link | Descripción |
+| --- | --- | --- | --- |
+| GET | `/api/authors` | `http://localhost:3000/api/authors` | Lista todos los autores |
+| GET | `/api/authors/:id` | `http://localhost:3000/api/authors/:id` | Obtiene un autor por ID |
+| POST | `/api/authors` | `http://localhost:3000/api/authors` | Crea un nuevo autor |
+| PUT | `/api/authors/:id` | `http://localhost:3000/api/authors/:id` | Actualiza un autor |
+| DELETE | `/api/authors/:id` | `http://localhost:3000/api/authors/:id` | Elimina un autor y sus posts |
+
+#### Crear autor (`POST /api/authors`)
+
+Ejemplo de request:
+
+```http
+POST /api/authors
+Content-Type: application/json
+```
+
+```json
+{
+  "name": "Ana García",
+  "email": "ana@example.com"
+}
+```
+
+Validaciones:
+
+- `name`: obligatorio y debe ser texto
+- `email`: obligatorio, texto válido y con formato de email
+
+Ejemplo de respuesta exitosa (`201 Created`):
+
+```json
+{
+  "id": 1,
+  "name": "Ana García",
+  "email": "ana@example.com"
+}
+```
+
+Ejemplo de error de validación (`400 Bad Request`):
+
+```json
+{
+  "error": "Datos inválidos",
+  "details": [
+    "name es obligatorio",
+    "email debe ser válido"
+  ]
+}
+```
 
 ### Posts
 
-| Método | Ruta | Descripción |
-| --- | --- | --- |
-| GET | `/api/posts` | Lista todos los posts |
-| GET | `/api/posts/:id` | Obtiene un post por ID |
-| GET | `/api/posts/author/:authorId` | Lista los posts de un autor |
-| POST | `/api/posts` | Crea un post |
-| PUT | `/api/posts/:id` | Actualiza un post |
-| DELETE | `/api/posts/:id` | Elimina un post |
+| Método | Ruta | Link | Descripción |
+| --- | --- | --- | --- |
+| GET | `/api/posts` | `http://localhost:3000/api/posts` | Lista todos los posts |
+| GET | `/api/posts/:id` | `http://localhost:3000/api/posts/:id` | Obtiene un post por ID |
+| GET | `/api/posts/author/:authorId` | `http://localhost:3000/api/posts/author/:authorId` | Lista los posts de un autor |
+| POST | `/api/posts` | `http://localhost:3000/api/posts` | Crea un post |
+| PUT | `/api/posts/:id` | `http://localhost:3000/api/posts/:id` | Actualiza un post |
+| DELETE | `/api/posts/:id` | `http://localhost:3000/api/posts/:id` | Elimina un post |
 
 ### Documentación
 
@@ -218,6 +261,11 @@ El proyecto está preparado para desplegarse con Railway. El archivo `railway.to
 - Base URL: https://api-production-83b2.up.railway.app/
 - Health check: https://api-production-83b2.up.railway.app/health
 - OpenAPI: https://api-production-83b2.up.railway.app/openapi.yaml
+- Swagger UI: https://api-production-83b2.up.railway.app/api-docs/
+
+### Link directo para abrir desde GitHub
+
+https://api-production-83b2.up.railway.app/
 - Swagger UI: https://api-production-83b2.up.railway.app/api-docs/
 
 ## Notas finales
